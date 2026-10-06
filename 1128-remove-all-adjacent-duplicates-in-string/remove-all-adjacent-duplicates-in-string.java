@@ -1,18 +1,21 @@
 class Solution {
     public String removeDuplicates(String s) {
-        StringBuilder clean = new StringBuilder();
-
-        for (int i = 0; i < s.length(); i++) {
-            char ch = s.charAt(i);
-            if (clean.length() > 0 && clean.charAt(clean.length() - 1) == ch) {
-                
-                clean.deleteCharAt(clean.length() - 1);
-            } else {
-            
-                clean.append(ch);
+        char [] arr = new char[s.length()];
+         int arr_index=0;
+        for(int i=0;i<s.length();i++)
+        {    char character =s.charAt(i);
+            if(arr_index>0 && arr[arr_index-1]==character)
+            {
+                arr_index--;
+            }
+            else
+            {
+                arr[arr_index]=character;
+                arr_index++;
             }
         }
+        return new String(arr,0,arr_index);
 
-        return clean.toString();
+        
     }
 }
