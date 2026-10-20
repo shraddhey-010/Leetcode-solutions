@@ -1,4 +1,4 @@
-import java.util.*;
+
 class Solution {
     public boolean backspaceCompare(String s, String t) {
        return backspace(s).equals(backspace(t));
@@ -6,21 +6,25 @@ class Solution {
     private String backspace(String s)
     {
         StringBuilder sb = new StringBuilder();
-        Deque<Character> stack = new ArrayDeque<>();
-        for(char c : s.toCharArray())
+        int j=0;
+        int i=0;
+        while(j<s.length())
         {
-            if(c!='#')
-             stack.push(c);
-            else if(!stack.isEmpty())
-             stack.pop();
-        }
-        while(!stack.isEmpty())
-        {
-            sb.append(stack.removeLast());
+          if(s.charAt(j)!='#')
+          {
+             sb.append(s.charAt(j));
+             i++;
+          }
+           else if(sb.length()!=0)
+           {
+             i--;
+             sb.deleteCharAt(i);
+           }
+          j++;
+
+
         }
         return sb.toString();
     }
-
-    }
-
-
+}
+         
