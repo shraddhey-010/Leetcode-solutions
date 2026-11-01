@@ -6,23 +6,13 @@ class Solution {
         while(i<j)
         {
           if(numbers[i]+numbers[j] == target)
-          {
             return new int[]{i+1,j+1};
-          }
-
-         if(numbers[i]+numbers[j] > target)
-         {
+          if(numbers[i]+numbers[j] > target)
             j--;
-         }
-         if(numbers[i]+numbers[j] < target)
-         {
+          if(numbers[i]+numbers[j] < target)
             i++;
-         }
-         
         }
-
-       
-      return new int[]{-1,-1};
         
-    }
+      return new int[]{-1,-1};
+     }
 }
