@@ -1,5 +1,11 @@
 class Solution {
     public int minDays(int[] bloomDay, int m, int k) {
+        
+        
+        if ((long) m * k > bloomDay.length) 
+        {
+          return -1; 
+         }
         int left=0;int right=0;int max=0;int min=Integer.MAX_VALUE;
         for(int c:bloomDay)
         {
