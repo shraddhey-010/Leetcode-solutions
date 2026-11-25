@@ -1,20 +1,26 @@
 class Solution {
     public String removeDuplicates(String s) {
-        char [] arr = new char[s.length()];
-         int arr_index=0;
-        for(int i=0;i<s.length();i++)
-        {    char character =s.charAt(i);
-            if(arr_index>0 && arr[arr_index-1]==character)
+        StringBuilder sb = new StringBuilder();
+        Deque<Character> stack=new ArrayDeque<>(); 
+        char [] arr= s.toCharArray();
+        for(char c: arr)
+        {
+            if(!stack.isEmpty()&& stack.peek()==c)
             {
-                arr_index--;
+                stack.pop();
             }
             else
             {
-                arr[arr_index]=character;
-                arr_index++;
+                stack.push(c);
             }
+
         }
-        return new String(arr,0,arr_index);
+        while(!stack.isEmpty())
+        {
+            sb.append(stack.pop());
+        }
+
+        return sb.reverse().toString();
 
         
     }
