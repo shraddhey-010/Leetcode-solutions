@@ -1,27 +1,34 @@
-import java.util.ArrayDeque;
-import java.util.Deque;
+class Solution {
+    private static class Hybrid {
+        char ch;
+        int count;
 
-public class Solution {
+        Hybrid(char ch, int count) {
+            this.ch = ch;
+            this.count = count;
+        }
+    }
+
     public String removeDuplicates(String s, int k) {
-        Deque<int[]> stack = new ArrayDeque<>();
+        Deque<Hybrid> stack = new ArrayDeque<>();
+        StringBuilder sb = new StringBuilder();
+        char[] arr = s.toCharArray();
 
-        for (char c : s.toCharArray()) {
-            if (!stack.isEmpty() && stack.peek()[0] == c) {
-                stack.peek()[1]++;
-                if (stack.peek()[1] == k) {
+        for (char c: arr){
+            if (!stack.isEmpty() && stack.peek().ch == c) {
+                stack.peek().count++;
+                if (stack.peek().count == k) {
                     stack.pop();
                 }
             } else {
-                stack.push(new int[]{c, 1});
+                stack.push(new Hybrid(c, 1));
             }
         }
 
-        StringBuilder sb = new StringBuilder();
-        for (int[] item : stack) {
-            char ch = (char) item[0];
-            int count = item[1];
-            for (int i = 0; i < count; i++) {
-                sb.append(ch);
+        while (!stack.isEmpty()) {
+            Hybrid hy = stack.pop();
+            for (int i = 1; i <= hy.count; i++) {
+                sb.append(hy.ch);
             }
         }
 
